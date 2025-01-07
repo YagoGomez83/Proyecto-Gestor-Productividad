@@ -52,4 +52,22 @@ class CenterController extends Controller
         $this->centerService->deleteCenter($id);
         return redirect()->route('centers.index')->with('success', 'Center deleted successfully');
     }
+
+    public function showGroups($id)
+    {
+        $center = $this->centerService->getCenterWithGroups($id);
+        if (!$center) {
+            return redirect()->route('centers.index')->with('error', 'Center not found');
+        }
+        return view('center.groups.index', compact('center'));
+    }
+
+    public function showRegionalUnits($id)
+    {
+        $center = $this->centerService->getCenterWithRegionalUnits($id);
+        if (!$center) {
+            return redirect()->route('centers.index')->with('error', 'Center not found');
+        }
+        return view('center.Regional_Units.index', compact('center'));
+    }
 }

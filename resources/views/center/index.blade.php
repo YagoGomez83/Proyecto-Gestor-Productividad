@@ -5,13 +5,15 @@
 @section('content')
 <div class="container mx-auto p-6">
     <h2 class="text-2xl font-bold mb-4">Centros</h2>
-    <a href="{{ route('centers.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block hover:bg-blue-600">
+    <a href="{{ route('centers.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block hover:bg-blue-600">
         Crear Centro
     </a>
     <table class="min-w-full bg-white border border-gray-300 p-10">
         <thead>
             <tr>
                 <th class="px-4 py-2 border-b">Nombre</th>
+                <th class="px-4 py-2 border-b">Grupos</th>
+                <th class="px-4 py-2 border-b">Unidades Regionales</th>
                 <th class="px-4 py-2 border-b">Acciones</th>
             </tr>
         </thead>
@@ -19,6 +21,12 @@
             @foreach($centers as $center)
                 <tr>
                     <td class="px-4 py-2 border-b text-center">{{ $center->name }}</td>
+                    <td class="px-4 py-2 border-b text-center">
+                        <a href="{{ route('centers.groups', $center->id) }}" class="text-blue-500 hover:underline">Ver Grupos</a>
+                    </td>
+                    <td class="px-4 py-2 border-b text-center">
+                        <a href="{{ route('centers.regionalUnits', $center->id) }}" class="text-blue-500 hover:underline">Ver Unidades Regionales</a>
+                    </td>
                     <td class="px-4 py-2 border-b flex justify-center gap-2">
                         <a href="{{ route('centers.edit', $center->id) }}" class="text-blue-500 hover:underline">Editar</a>
                         <form action="{{ route('centers.destroy', $center->id) }}" method="POST" class="inline-block">
@@ -32,4 +40,4 @@
         </tbody>
     </table>
 </div>
-        @endsection
+@endsection

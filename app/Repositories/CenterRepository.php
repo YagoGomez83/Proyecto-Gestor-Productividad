@@ -32,4 +32,14 @@ class CenterRepository
     {
         return Center::destroy($id);
     }
+
+    public function getCenterWithGroups($id)
+    {
+        return Center::with('groups')->find($id);
+    }
+
+    public function getCenterWithRegionalUnits($id)
+    {
+        return Center::with('regionalUnits')->find($id);
+    }
 }

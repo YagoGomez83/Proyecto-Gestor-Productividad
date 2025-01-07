@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CenterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\CenterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegionalUnitController;
 
@@ -52,6 +53,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/centers/create', [CenterController::class, 'create'])->name('centers.create');
         Route::post('/centers', [CenterController::class, 'store'])->name('centers.store');
         Route::delete('/centers/{id}', [CenterController::class, 'destroy'])->name('centers.destroy');
+
+        //Grupos y unidades Regionales por Centros
+        Route::get('/centers/{id}/groups', [CenterController::class, 'showGroups'])->name('centers.groups');
+        Route::get('/centers/{id}/regional-units', [CenterController::class, 'showRegionalUnits'])->name('centers.regionalUnits');
+
+        //Usuarios por grupo
+        Route::get('/group/{id}/users', [GroupController::class, 'showMembers'])->name('group.users');
+        Route::put('/group/{id}/edit', [GroupController::class, 'edit'])->name('group.edit');
+        Route::delete('/group/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
+
         // Logout
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     });

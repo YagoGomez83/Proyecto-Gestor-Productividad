@@ -37,4 +37,14 @@ class CenterService
     {
         return $this->centerRepository->deleteCenter($centerId);
     }
+
+    public function getCenterWithGroups($centerId)
+    {
+        return $this->centerRepository->getCenterWithGroups($centerId);
+    }
+
+    public function getCenterWithRegionalUnits($centerId)
+    {
+        return $this->centerRepository->getCenterWithRegionalUnits($centerId);
+    }
 }
