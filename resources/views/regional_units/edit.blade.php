@@ -11,6 +11,9 @@
             <div class="mb-4">
                 <label for="name" class="block text-gray-700">Nombre</label>
                 <input type="text" name="name" id="name" value="{{ $regionalUnit->name }}" class="w-full p-2 border border-gray-300 rounded mt-1">
+                @error('name')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>   
+                    @enderror
             </div>
             <div class="mb-4">
                 <label for="center_id" class="block text-gray-700">Centro</label>
@@ -19,6 +22,9 @@
                         <option value="{{ $center->id }}" {{ $regionalUnit->center_id == $center->id ? 'selected' : '' }}>{{ $center->name }}</option>
                     @endforeach
                 </select>
+                @error('center_id')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>   
+                    @enderror
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Actualizar</button>
         </form>

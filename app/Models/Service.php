@@ -15,38 +15,34 @@ class Service extends Model
         'user_id',
         'group_id',
         'city_id',
+        'initial_police_movement_code_id',
+        'final_police_movement_code_id',
         'status',
         'description',
-        'police_movement_code_id',
     ];
 
-    // Relación con el modelo User
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relación con el modelo Group
     public function group()
     {
         return $this->belongsTo(Group::class);
     }
 
-    // Relación con el modelo City
     public function city()
     {
         return $this->belongsTo(City::class);
     }
 
-    // Relación con el modelo PoliceMovementCode
-    public function policeMovementCode()
+    public function initialPoliceMovementCode()
     {
-        return $this->belongsTo(PoliceMovementCode::class);
+        return $this->belongsTo(PoliceMovementCode::class, 'initial_police_movement_code_id');
     }
 
-    // Relación a través de Group para obtener el Center
-    public function center()
+    public function finalPoliceMovementCode()
     {
-        return $this->group->center();
+        return $this->belongsTo(PoliceMovementCode::class, 'final_police_movement_code_id');
     }
 }

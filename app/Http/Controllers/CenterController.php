@@ -23,7 +23,7 @@ class CenterController extends Controller
 
     public function create()
     {
-        return view('centers.create');
+        return view('center.create');
     }
 
     public function store(CenterRequest $request)
@@ -38,7 +38,7 @@ class CenterController extends Controller
         if (!$center) {
             return redirect()->route('centers.index')->with('error', 'Center not found');
         }
-        return view('centers.edit', compact('center'));
+        return view('center.edit', compact('center'));
     }
 
     public function update(CenterRequest $request, $id)
