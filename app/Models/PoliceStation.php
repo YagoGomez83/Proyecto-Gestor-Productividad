@@ -9,11 +9,11 @@ class PoliceStation extends Model
 {
     protected $fillable = [
         'name',
-        'location_id'
+        'city_id'
     ];
 
-    public function location(): BelongsTo
+    public function city(): BelongsTo
     {
-        return $this->belongsTo(Location::class, 'location_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 }

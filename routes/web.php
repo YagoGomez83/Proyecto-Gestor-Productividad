@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegionalUnitController;
+use App\Http\Controllers\PoliceStationController;
 
 // Rutas para usuarios invitados
 Route::middleware('guest')->group(function () {
@@ -46,6 +48,15 @@ Route::middleware('auth')->group(function () {
         Route::put('/regional_units/{id}', [RegionalUnitController::class, 'update'])->name('regional_units.update');
         Route::delete('/regional_units/{id}', [RegionalUnitController::class, 'destroy'])->name('regional_units.destroy');
 
+        //city Routes
+        Route::get('/cities', [CityController::class, 'index'])->name('cities.index');  //Listado de ciudades
+        Route::get('/cities/create', [CityController::class, 'create'])->name('cities.create'); //Formulario de creación    
+        Route::post('/cities', [CityController::class, 'store'])->name('cities.store'); //Guardar ciudad
+        Route::get('/cities/{id}/edit', [CityController::class, 'edit'])->name('cities.edit'); //Formulario de edición  
+        Route::put('/cities/{id}', [CityController::class, 'update'])->name('cities.update'); //Actualizar ciudad   
+        Route::delete('/cities/{id}', [CityController::class, 'destroy'])->name('cities.destroy'); //Eliminar ciudad
+
+
         //Center Routes
         Route::get('/centers', [CenterController::class, 'index'])->name('centers.index');
         Route::get('/centers/{id}/edit', [CenterController::class, 'edit'])->name('centers.edit');
@@ -57,6 +68,16 @@ Route::middleware('auth')->group(function () {
         //Grupos y unidades Regionales por Centros
         Route::get('/centers/{id}/groups', [CenterController::class, 'showGroups'])->name('centers.groups');
         Route::get('/centers/{id}/regional-units', [CenterController::class, 'showRegionalUnits'])->name('centers.regionalUnits');
+
+        //PoliceStation Routes
+
+        Route::get('/policeStations', [PoliceStationController::class, 'index'])->name('policeStations.index');
+        Route::get('/policeStations/{id}/edit', [PoliceStationController::class, 'edit'])->name('policeStations.edit');
+        Route::put('/policeStations/{id}', [PoliceStationController::class, 'update'])->name('policeStations.update');
+        Route::get('/policeStations/create', [PoliceStationController::class, 'create'])->name('policeStations.create');
+        Route::post('/policeStations', [PoliceStationController::class, 'store'])->name('policeStations.store');
+        Route::delete('/policeStations/{id}', [PoliceStationController::class, 'destroy'])->name('policeStations.destroy');
+
 
         //Usuarios por grupo
         Route::get('/group/{id}/users', [GroupController::class, 'showMembers'])->name('group.users');

@@ -22,12 +22,12 @@ class CityController extends Controller
     public function index()
     {
         $cities = $this->CityService->getAllCities();
-        return view('city.index', compact('cities'));
+        return view('cities.index', compact('cities'));
     }
     public function create()
     {
         $regionalUnits = $this->regionalUnitService->getAllRegionalUnits();
-        return view('city.create', compact('regionalUnits'));
+        return view('cities.create', compact('regionalUnits'));
     }
 
     public function store(CityRequest $request)
@@ -43,7 +43,7 @@ class CityController extends Controller
             return redirect()->route('cities.index')->with('error', 'City not found');
         }
         $regionalUnits = $this->regionalUnitService->getAllRegionalUnits();
-        return view('city.edit', compact('city', 'regionalUnits'));
+        return view('cities.edit', compact('city', 'regionalUnits'));
     }
 
     public function update($id, CityRequest $request)
@@ -61,6 +61,6 @@ class CityController extends Controller
     public function showCitiesByRegionalUnit($regionalUnitId)
     {
         $cities = $this->CityService->getCitiesByRegionalUnit($regionalUnitId);
-        return view('city.index', compact('cities'));
+        return view('cities.index', compact('cities'));
     }
 }

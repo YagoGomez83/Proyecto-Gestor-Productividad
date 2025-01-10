@@ -8,7 +8,11 @@ class CityRepository
 {
     public function getAllCities()
     {
-        return City::all();
+        return City::with('regionalUnit')
+            ->join('regional_units', 'cities.regional_unit_id', '=', 'regional_units.id')
+            ->orderBy('regional_units.name')
+            ->orderBy('cities.name')
+            ->get(['cities.*']); // Select only city columns
     }
 
     public function getCityById($id)

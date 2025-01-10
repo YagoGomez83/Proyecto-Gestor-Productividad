@@ -31,10 +31,21 @@
                 </a>
             </li>
             <li class="mb-4">
+                <a href="{{ route('policeStations.index') }}" class="block text-white hover:bg-blue-600 p-2 rounded">
+                    Dependencias Policiales
+                </a>
+            </li>
+            <li class="mb-4">
                 <a href="{{ route('centers.index') }}" class="block text-white hover:bg-blue-600 p-2 rounded">
                     Centros de San Luis
                 </a>
             </li>
+            <li class="mb-4">
+                <a href="{{ route('cities.index') }}" class="block text-white hover:bg-blue-600 p-2 rounded">
+                    Ciudades y Localidades
+                </a>
+            </li>
+
             <li class="mb-4">
                 <a href="{{ route('management.dashboard') }}" class="block text-white hover:bg-blue-600 p-2 rounded">
                     Dashboard
