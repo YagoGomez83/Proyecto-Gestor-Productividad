@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id')->nullable();
 
             // Definir las claves foráneas
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('set null');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
         });
     }
 

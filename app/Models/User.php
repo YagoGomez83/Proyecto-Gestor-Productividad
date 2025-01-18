@@ -66,13 +66,26 @@ class User extends Authenticatable
     public function deleteUser(): bool
     {
         $this->is_active = false;
-        return $this->save();
+        $result = $this->save();
+
+        // Eliminar asociaciones con otros modelos
+        if ($result) {
+            $this->services()->update(['is_active' => false]);
+        }
+        return $result;
     }
 
     // Método para restaurar un usuario
     public function restoreUser(): bool
     {
+
         $this->is_active = true;
-        return $this->save();
+        $result = $this->save();
+
+        // Restaurar asociaciones con otros modelos
+        if ($result) {
+            $this->services()->update(['is_active' => true]);
+        }
+        return $result;
     }
 }

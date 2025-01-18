@@ -38,6 +38,11 @@ class CenterService
         return $this->centerRepository->deleteCenter($centerId);
     }
 
+    public function restoreCenter($centerId)
+    {
+        return $this->centerRepository->restoreCenter($centerId);
+    }
+
     public function getCenterWithGroups($centerId)
     {
         return $this->centerRepository->getCenterWithGroups($centerId);

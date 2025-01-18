@@ -3,6 +3,7 @@
 @section('content')
 <div class="container mx-auto p-6">
     <h1 class="text-2xl font-bold mb-6">Editar Usuario</h1>
+    {{-- {{ dd($cities); }} --}}
     <form action="{{ route('users.update', $user->id) }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @csrf
         @method('PUT')
@@ -57,13 +58,16 @@
             <select id="city_id" name="city_id" required
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 @foreach($cities as $city)
-                    <option value="{{ $city->id }}" value="{{  old('city_id', $user->city_id) == $city->id ? 'selected' : ''}}">{{ $city->name }}</option>
+                    <option value="{{ $city->id }}" {{ old('city_id', $user->city_id) == $city->id ? 'selected' : '' }}>
+                        {{ $city->name }}
+                    </option>
                 @endforeach
             </select>
             @error('city_id')
              <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
+        
 
         <!-- Dirección -->
         <div class="mb-4">
@@ -91,13 +95,16 @@
             <select id="group_id" name="group_id" required
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 @foreach($groups as $group)
-                    <option value="{{ $group->id }}" value="{{ old('group_id', $user->group_id == $group->id ?'selected':'' ) }}">{{ $group->name }}</option>
+                    <option value="{{ $group->id }}" {{ old('group_id', $user->group_id) == $group->id ? 'selected' : '' }}>
+                        {{ $group->name }}
+                    </option>
                 @endforeach
             </select>
             @error('group_id')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
+        
 
         
         

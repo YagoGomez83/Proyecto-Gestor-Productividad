@@ -9,6 +9,8 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegionalUnitController;
 use App\Http\Controllers\PoliceStationController;
+use App\Http\Controllers\PoliceMovementCodeController;
+use App\Http\Controllers\SubPoliceMovementCodeController;
 
 // Rutas para usuarios invitados
 Route::middleware('guest')->group(function () {
@@ -77,6 +79,25 @@ Route::middleware('auth')->group(function () {
         Route::get('/policeStations/create', [PoliceStationController::class, 'create'])->name('policeStations.create');
         Route::post('/policeStations', [PoliceStationController::class, 'store'])->name('policeStations.store');
         Route::delete('/policeStations/{id}', [PoliceStationController::class, 'destroy'])->name('policeStations.destroy');
+
+
+        //PoliceMovementCode Routes
+
+        Route::resource('policeMovementCodes', PoliceMovementCodeController::class);
+        Route::get('subPoliceMovementCodes/{policeMovementCode}', [SubPoliceMovementCodeController::class, 'index'])
+            ->name('subPoliceMovementCodes.index');
+        Route::get('subPoliceMovementCodes/create/{policeMovementCode}', [SubPoliceMovementCodeController::class, 'create'])
+            ->name('subPoliceMovementCodes.create');
+        Route::post('subPoliceMovementCodes', [SubPoliceMovementCodeController::class, 'store'])
+            ->name('subPoliceMovementCodes.store');
+        Route::get('subPoliceMovementCodes/{id}/edit', [SubPoliceMovementCodeController::class, 'edit'])
+            ->name('subPoliceMovementCodes.edit');
+        Route::put('subPoliceMovementCodes/{id}', [SubPoliceMovementCodeController::class, 'update'])
+            ->name('subPoliceMovementCodes.update');
+        Route::delete('subPoliceMovementCodes/{id}', [SubPoliceMovementCodeController::class, 'destroy'])
+            ->name('subPoliceMovementCodes.destroy');
+
+
 
 
         //Usuarios por grupo

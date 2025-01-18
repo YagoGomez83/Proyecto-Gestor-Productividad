@@ -13,7 +13,8 @@ class Group extends Model
 
     protected $fillable = [
         'name',
-        'center_id', // Asumiendo que hay un centro relacionado
+        'center_id',
+        'is_active',
     ];
 
     // Relación con el modelo Center
@@ -32,4 +33,34 @@ class Group extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function deteleGroup(): bool
+    {
+        // Desactivar el grupo
+        $this->is_active = false;
+        $result = $this->save();
+
+        // Desactivar las entidades relacionadas
+        if ($result) {
+            $this->services()->update(['is_active' => false]);
+            $this->users()->update(['is_active' => false]);
+        }
+
+        return $result;
+    } // fin método deteleGroup
+
+    public function restoreGroup(): bool
+    {
+        // Restaurar el grupo
+        $this->is_active = true;
+        $result = $this->save();
+
+        // Restaurar las entidades relacionadas
+        if ($result) {
+            $this->services()->update(['is_active' => true]);
+            $this->users()->update(['is_active' => true]);
+        }
+
+        return $result;
+    } // fin método restoreGroup 
 }

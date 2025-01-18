@@ -41,6 +41,12 @@ class UserRepository
         $user->deleteUser();  // Llamar al método deleteUser() en lugar de eliminar físicamente
     }
 
+    //usar los repositorios de cada entidad
+    public function getServicesByUser($userId)
+    {
+        return User::find($userId)->services;
+    }
+
     public function getAllCities()
     {
         return City::all();

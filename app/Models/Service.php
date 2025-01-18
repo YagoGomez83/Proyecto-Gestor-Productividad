@@ -19,6 +19,7 @@ class Service extends Model
         'final_police_movement_code_id',
         'status',
         'description',
+        'is_active',
     ];
 
     public function user()
@@ -44,5 +45,23 @@ class Service extends Model
     public function finalPoliceMovementCode()
     {
         return $this->belongsTo(PoliceMovementCode::class, 'final_police_movement_code_id');
+    }
+
+    public function deleteService(): bool
+    {
+        // Desactivar el servicio
+        $this->is_active = false;
+        $result = $this->save();
+
+        return $result;
+    }
+
+    public function restoreService(): bool
+    {
+        // Restaurar el servicio
+        $this->is_active = true;
+        $result = $this->save();
+
+        return $result;
     }
 }

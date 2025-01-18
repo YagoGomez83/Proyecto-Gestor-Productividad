@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Location extends Model
 {
     protected $fillable = [
-        'name',
-        'regional_unit_id'
+        'address',
+        'latitude',
+        'longitude',
     ];
 
-    public function regionalUnit(): BelongsTo
+    public function cameras(): HasMany
     {
-        return $this->belongsTo(RegionalUnit::class, 'regional_unit_id');
+        return $this->hasMany(Camera::class);
     }
 }

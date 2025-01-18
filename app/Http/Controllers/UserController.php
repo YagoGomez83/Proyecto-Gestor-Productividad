@@ -78,6 +78,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = $this->userService->getEditPageData($id);
+
         return view('users.management.edit', $data);
     }
 

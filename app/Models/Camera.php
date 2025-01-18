@@ -9,14 +9,37 @@ class Camera extends Model
 {
     protected $fillable = [
         'identifier',
-        'address',
-        'latitude',
-        'longitude',
-        'police_station_id'
+        'location_id',
+        'city_id',
+        'police_station_id',
+        'is_active',
     ];
 
     public function policeStation(): BelongsTo
     {
         return $this->belongsTo(PoliceStation::class, 'police_station_id');
+    }
+
+
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function deleteCamera(): bool
+    {
+        $this->is_active = false;
+        return $this->save();
+    }
+
+    public function restoreCamera(): bool
+    {
+        $this->is_active = true;
+        return $this->save();
     }
 }

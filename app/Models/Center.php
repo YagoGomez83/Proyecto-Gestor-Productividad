@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Center extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'is_active'];
 
     public function services(): HasMany
     {

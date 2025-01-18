@@ -47,6 +47,12 @@
             </li>
 
             <li class="mb-4">
+                <a href="{{ route('policeMovementCodes.index') }}" class="block text-white hover:bg-blue-600 p-2 rounded">
+                    Codigos de Desplazamientos policiales
+                </a>
+            </li>
+
+            <li class="mb-4">
                 <a href="{{ route('management.dashboard') }}" class="block text-white hover:bg-blue-600 p-2 rounded">
                     Dashboard
                 </a>
